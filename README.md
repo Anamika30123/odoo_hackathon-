@@ -1,283 +1,228 @@
 # Skill Swap Platform
 
-A full-stack web application that enables users to exchange skills through a community-driven platform. Built with React.js frontend, Node.js backend, and PostgreSQL database.
+A full-stack web application that enables users to exchange skills through a community-driven platform.
 
 ## Features
 
 ### User Authentication
-- User registration and login
-- JWT-based authentication
-- Profile photo upload
-- Public/private profile settings
+
+* Secure registration and login system
+* JWT-based authentication
+* Profile photo upload capability
+* Public/private profile settings
 
 ### Profile Management
-- Complete user profiles with skills offered and wanted
-- Location and availability information
-- Skill proficiency and urgency levels
-- Profile visibility controls
 
-### Skill Management
-- Browse and search skills by category
-- Add skills you can teach or want to learn
-- Skill categorization and tagging
-- Dynamic skill suggestions
+* Complete user profiles with:
 
-### Swap System
-- Send swap requests to other users
-- Accept/reject incoming requests
-- Track request status (pending, accepted, rejected, completed)
-- Message system for communication
+  * Skills offered and wanted
+  * Location and availability information
+  * Skill proficiency levels
+  * Profile visibility controls
 
-### Rating & Feedback
-- Rate completed skill swaps
-- Leave feedback for other users
-- View user ratings and reviews
-- Build trust through community feedback
+### Skill Exchange System
 
-### Browse & Search
-- Find users by skills, location, or name
-- Filter and search functionality
-- View detailed user profiles
-- Responsive grid layout
+* Browse and search skills by category
+* Add skills you can teach or want to learn
+* Categorization and tagging system
+* Dynamic skill suggestions
+
+### Swap Functionality
+
+* Send and receive swap requests
+* Accept/reject incoming requests
+* Track request status (pending, accepted, completed)
+* Integrated messaging system
+
+### Rating System
+
+* Rate completed skill swaps
+* Leave detailed feedback
+* View user ratings and reviews
+* Trust-building through community feedback
 
 ## Technology Stack
 
 ### Frontend
-- **React.js** - User interface framework
-- **React Router** - Client-side routing
-- **Axios** - HTTP client for API calls
-- **CSS3** - Custom styling with responsive design
-- **Context API** - State management
+
+* React.js with Hooks
+* React Router for navigation
+* Context API for state management
+* Axios for API communication
+* CSS Modules for styling
 
 ### Backend
-- **Node.js** - Server runtime
-- **Express.js** - Web application framework
-- **PostgreSQL** - Relational database
-- **JWT** - Authentication tokens
-- **bcryptjs** - Password hashing
-- **Multer** - File upload handling
 
-### Database
-- **PostgreSQL** - Primary database
-- Structured schema with relationships
-- Indexes for performance optimization
+* Node.js with Express.js
+* PostgreSQL database
+* JWT for authentication
+* Bcrypt for password hashing
+* Multer for file uploads
 
-## Installation & Setup
+### Development Tools
+
+* Git for version control
+* Postman for API testing
+* ESLint for code quality
+* Prettier for code formatting
+
+## Installation Guide
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- PostgreSQL (v12 or higher)
-- npm or yarn package manager
 
-### Database Setup
-
-1. Install PostgreSQL and create a database:
-\`\`\`sql
-CREATE DATABASE skill_swap;
-\`\`\`
-
-2. Update the database configuration in `backend/.env`:
-\`\`\`env
-DB_USER=your_username
-DB_HOST=localhost
-DB_NAME=skill_swap
-DB_PASSWORD=your_password
-DB_PORT=5432
-JWT_SECRET=your-super-secret-jwt-key-here
-PORT=5000
-\`\`\`
-
-3. Run the database schema:
-\`\`\`bash
-psql -U your_username -d skill_swap -f database/schema.sql
-\`\`\`
+* Node.js (v16 or higher)
+* PostgreSQL (v12 or higher)
+* npm (v8 or higher) or yarn
 
 ### Backend Setup
 
-1. Navigate to the backend directory:
-\`\`\`bash
-cd backend
-\`\`\`
-
-2. Install dependencies:
-\`\`\`bash
+```bash
+git clone https://github.com/Anamika30123/odoo_hackathon-.git
+cd skill-swap-platform/backend
 npm install
-\`\`\`
+```
 
-3. Create uploads directory:
-\`\`\`bash
-mkdir uploads
-\`\`\`
+Create and configure `.env` file:
 
-4. Start the server:
-\`\`\`bash
+```env
+DB_USER=your_db_username
+DB_HOST=localhost
+DB_NAME=skill_swap
+DB_PASSWORD=your_db_password
+DB_PORT=5432
+JWT_SECRET=your_jwt_secret_key
+PORT=5000
+```
+
+Run database migrations:
+
+```bash
+psql -U your_db_username -d skill_swap -f ../database/schema.sql
+```
+
+Start the server:
+
+```bash
 npm run dev
-\`\`\`
-
-The backend server will run on `http://localhost:5000`
+```
 
 ### Frontend Setup
 
-1. Navigate to the project root directory:
-\`\`\`bash
-cd ..
-\`\`\`
+Navigate to frontend directory:
 
-2. Install dependencies:
-\`\`\`bash
+```bash
+cd ../frontend
 npm install
-\`\`\`
-
-3. Start the React development server:
-\`\`\`bash
 npm start
-\`\`\`
-
-The frontend will run on `http://localhost:3000`
+```
 
 ## API Endpoints
 
 ### Authentication
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
+
+| Endpoint           | Method | Description       |
+| ------------------ | ------ | ----------------- |
+| /api/auth/register | POST   | Register new user |
+| /api/auth/login    | POST   | User login        |
 
 ### Profile
-- `GET /api/profile` - Get user profile
-- `PUT /api/profile` - Update user profile
-- `POST /api/profile/photo` - Upload profile photo
+
+| Endpoint           | Method | Description          |
+| ------------------ | ------ | -------------------- |
+| /api/profile       | GET    | Get user profile     |
+| /api/profile       | PUT    | Update profile       |
+| /api/profile/photo | POST   | Upload profile photo |
 
 ### Skills
-- `GET /api/skills` - Get all available skills
-- `POST /api/skills` - Create new skill
-- `GET /api/user/skills/offered` - Get user's offered skills
-- `POST /api/user/skills/offered` - Add offered skill
-- `GET /api/user/skills/wanted` - Get user's wanted skills
-- `POST /api/user/skills/wanted` - Add wanted skill
 
-### Users
-- `GET /api/users/browse` - Browse public users with filters
+| Endpoint                 | Method | Description               |
+| ------------------------ | ------ | ------------------------- |
+| /api/skills              | GET    | Get all skills            |
+| /api/user/skills/offered | GET    | Get user's offered skills |
+| /api/user/skills/wanted  | GET    | Get user's wanted skills  |
 
-### Swap Requests
-- `GET /api/swap-requests` - Get user's swap requests
-- `POST /api/swap-requests` - Create swap request
-- `PUT /api/swap-requests/:id` - Update request status
-- `DELETE /api/swap-requests/:id` - Delete swap request
+### Swaps
 
-### Ratings
-- `POST /api/ratings` - Submit rating and feedback
-- `GET /api/ratings/user/:userId` - Get user's ratings
+| Endpoint           | Method | Description              |
+| ------------------ | ------ | ------------------------ |
+| /api/swap-requests | GET    | Get user's swap requests |
+| /api/swap-requests | POST   | Create new swap request  |
 
 ## Project Structure
 
-\`\`\`
+```
 skill-swap-platform/
 ├── backend/
-│   ├── server.js              # Main server file
-│   ├── package.json           # Backend dependencies
-│   ├── .env                   # Environment variables
-│   └── uploads/               # File upload directory
+│   ├── controllers/       # Business logic
+│   ├── middleware/        # Auth middleware
+│   ├── models/            # Database models
+│   ├── routes/            # API endpoints
+│   ├── server.js          # Server entry point
+│   └── package.json
+├── frontend/
+│   ├── public/            # Static files
+│   ├── src/
+│   │   ├── components/    # Reusable UI
+│   │   ├── pages/         # Route components
+│   │   ├── services/      # API services
+│   │   ├── App.js         # Root component
+│   │   └── index.js       # Entry point
+│   └── package.json
 ├── database/
-│   └── schema.sql             # Database schema
-├── src/
-│   ├── components/
-│   │   └── Navbar.js          # Navigation component
-│   ├── contexts/
-│   │   └── AuthContext.js     # Authentication context
-│   ├── pages/
-│   │   ├── Home.js            # Dashboard page
-│   │   ├── Login.js           # Login page
-│   │   ├── Register.js        # Registration page
-│   │   ├── Profile.js         # Profile management
-│   │   ├── Browse.js          # Browse users
-│   │   └── SwapRequests.js    # Manage requests
-│   ├── services/
-│   │   └── api.js             # API service layer
-│   ├── App.js                 # Main app component
-│   ├── App.css                # Global styles
-│   └── index.js               # App entry point
-├── package.json               # Frontend dependencies
-└── README.md                  # Project documentation
-\`\`\`
+│   └── schema.sql         # Database schema
+└── README.md              # Project documentation
+```
 
-## Features in Detail
+## Development
 
-### User Dashboard
-- Overview of user statistics
-- Recent activity feed
-- Quick action buttons
-- Responsive design for mobile
+### Running the Application
 
-### Skill Management
-- Add/remove skills with descriptions
-- Proficiency levels for offered skills
-- Urgency levels for wanted skills
-- Visual skill cards with categories
+Start backend server:
 
-### Request System
-- Intuitive request creation flow
-- Real-time status updates
-- Message system for communication
-- Request history and tracking
+```bash
+cd backend && npm run dev
+```
 
-### Rating System
-- 5-star rating system
-- Written feedback support
-- Average rating calculation
-- Trust building through reviews
+Start frontend development server:
 
-## Mobile Responsiveness
+```bash
+cd ../frontend && npm start
+```
 
-The application is fully responsive and optimized for:
-- Desktop computers (1200px+)
-- Tablets (768px - 1199px)
-- Mobile phones (320px - 767px)
+### Testing
 
-Key responsive features:
-- Collapsible navigation menu
-- Flexible grid layouts
-- Touch-friendly buttons
-- Optimized modal dialogs
+Run backend tests:
 
-## Security Features
+```bash
+cd backend && npm test
+```
 
-- JWT token authentication
-- Password hashing with bcrypt
-- Input validation and sanitization
-- CORS protection
-- File upload restrictions
-- SQL injection prevention
+Run frontend tests:
 
-## Performance Optimizations
+```bash
+cd frontend && npm test
+```
 
-- Lazy loading of components
-- Optimized database queries
-- Image compression for uploads
-- Efficient state management
-- Minimal re-renders
+## Deployment
 
-## Future Enhancements
+### Production Build
 
-- Real-time messaging system
-- Video call integration
-- Skill verification system
-- Advanced search filters
-- Mobile app development
-- Social media integration
-- Notification system
-- Admin dashboard
+Build frontend:
 
-## Contributing
+```bash
+cd frontend && npm run build
+```
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+Start production server:
+
+```bash
+cd ../backend && npm start
+```
 
 ## License
 
-This project is licensed under the MIT License.
+MIT License - see LICENSE for details.
 
 ## Support
 
-For support and questions, please open an issue in the GitHub repository.
+For issues or questions, please open an issue in the GitHub repository.
